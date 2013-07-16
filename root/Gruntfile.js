@@ -2,6 +2,7 @@ var path = require('path');
 
 var stylesheetsDir = 'assets/stylesheets';
 var rendrDir = 'node_modules/rendr';
+var rendrHandlebarsDir = 'node_modules/rendr-handlebars';
 var rendrModulesDir = rendrDir + '/node_modules';
 
 module.exports = function(grunt) {
@@ -99,12 +100,14 @@ module.exports = function(grunt) {
           npmDependencies: {
             underscore: '../rendr/node_modules/underscore/underscore.js',
             backbone: '../rendr/node_modules/backbone/backbone.js',
-            handlebars: '../rendr/node_modules/handlebars/dist/handlebars.runtime.js',
+            handlebars: '../rendr/node_modules/rendr-handlebars/node_modules/handlebars/dist/handlebars.runtime.js',
             async: '../rendr/node_modules/async/lib/async.js'
           },
           aliases: [
             {from: rendrDir + '/client', to: 'rendr/client'},
-            {from: rendrDir + '/shared', to: 'rendr/shared'}
+            {from: rendrDir + '/shared', to: 'rendr/shared'},
+            {from: rendrHandlebarsDir, to: 'rendr-handlebars'},
+            {from: rendrHandlebarsDir + '/shared', to: 'rendr-handlebars/shared'}
           ]
         },
         files: [{
@@ -112,7 +115,9 @@ module.exports = function(grunt) {
           src: [
             'app/**/*.js',
             rendrDir + '/client/**/*.js',
-            rendrDir + '/shared/**/*.js'
+            rendrDir + '/shared/**/*.js',
+            rendrHandlebarsDir + '/index.js',
+            rendrHandlebarsDir + '/shared/*.js'
           ]
         }]
       }
@@ -124,6 +129,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-bg-shell');
   grunt.loadNpmTasks('grunt-rendr-stitch');
+  grunt.loadNpmTasks('grunt-react');
 
   grunt.registerTask('compile', ['handlebars', 'react', 'rendr_stitch', 'stylus']);
 

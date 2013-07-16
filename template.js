@@ -61,13 +61,14 @@ exports.template = function (grunt, init, done) {
       "grunt": "~0.4.1",
       "grunt-contrib-jshint": "~0.1.1",
       "grunt-contrib-stylus": "~0.5.0",
-      "grunt-contrib-handlebars": "git://github.com/spikebrehm/grunt-contrib-handlebars#0395c6fa9c765616af34cafad377572196068cf8",
+      "grunt-contrib-handlebars": "git+https://github.com/spikebrehm/grunt-contrib-handlebars.git",
       "grunt-rendr-stitch": "~0.0.6",
       "grunt-contrib-watch": "~0.3.1",
       "grunt-bg-shell": "~2.0.1",
       "nodemon": "~0.7.6",
       "mocha": "~1.9.0",
-      "should": "~1.2.2"
+      "should": "~1.2.2",
+      "grunt-react": "~0.3.0"
     };
 
     // Files to copy (and process).
