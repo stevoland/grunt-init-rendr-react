@@ -1,5 +1,5 @@
 /*
- * grunt-init-rendr
+ * grunt-init-rendr-react
  *
  * Copyright (c) 2013 Andrew Jones
  * Licensed under the MIT license.
@@ -8,20 +8,24 @@
 'use strict';
 
 // Basic template description.
-exports.description = 'Create a Rendr project, including unit tests.';
+exports.description = 'Create a Rendr + React project, including unit tests.';
 
 // Template-specific notes to be displayed after question prompts.
 exports.after = 'You should now install project dependencies with _npm ' +
   'install_. After that, start your Rendr application with _grunt server_. ' +
   'Check out the Rendr documentation:' +
+  '\n' +
+  'https://github.com/airbnb/rendr' +
   '\n\n' +
-  'https://github.com/airbnb/rendr';
+  'React:' +
+  '\n' +
+  'http://facebook.github.io/react';
 
 // Any existing file or directory matching this wildcard will cause a warning.
 exports.warnOn = '*';
 
 // The actual init template.
-exports.template = function(grunt, init, done) {
+exports.template = function (grunt, init, done) {
 
   init.process({type: 'rendr'}, [
     // Prompt for these values.
@@ -41,9 +45,9 @@ exports.template = function(grunt, init, done) {
     {
       name: 'rendr_api_protocol',
       message: 'The protocol for the API',
-      default: 'https'
-    },
-  ], function(err, props) {
+      'default': 'https'
+    }
+  ], function (err, props) {
     props.keywords = [];
     props.dependencies = {
       "express": "~>3",
