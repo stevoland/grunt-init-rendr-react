@@ -1,3 +1,3 @@
-module.exports = function(match) {
+module.exports = function (match) {
   match('',                   'home#index');
 };

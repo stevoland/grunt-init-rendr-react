@@ -63,6 +63,13 @@ module.exports = function(grunt) {
           interrupt: true
         }
       },
+      react: {
+          files: 'app/**/*.jsx',
+          tasks: ['react'],
+          options: {
+              extension: 'jsx'
+          }
+      },
       stylesheets: {
         files: [stylesheetsDir + '/**/*.styl', stylesheetsDir + '/**/*.css'],
         tasks: ['stylus'],
@@ -70,6 +77,17 @@ module.exports = function(grunt) {
           interrupt: true
         }
       }
+    },
+
+    react: {
+        app: {
+            options: {
+                extension: 'jsx'
+            },
+            files: {
+                'app/': 'app/'
+            }
+        },
     },
 
     rendr_stitch: {
@@ -107,7 +125,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bg-shell');
   grunt.loadNpmTasks('grunt-rendr-stitch');
 
-  grunt.registerTask('compile', ['handlebars', 'rendr_stitch', 'stylus']);
+  grunt.registerTask('compile', ['handlebars', 'react', 'rendr_stitch', 'stylus']);
 
   // Run the server and watch for file changes
   grunt.registerTask('server', ['bgShell:runNode', 'compile', 'watch']);
