@@ -100,14 +100,15 @@ module.exports = function(grunt) {
           npmDependencies: {
             underscore: '../rendr/node_modules/underscore/underscore.js',
             backbone: '../rendr/node_modules/backbone/backbone.js',
-            handlebars: '../rendr/node_modules/rendr-handlebars/node_modules/handlebars/dist/handlebars.runtime.js',
+            //handlebars: '../rendr/node_modules/rendr-handlebars/node_modules/handlebars/dist/handlebars.runtime.js',
+            handlebars: '../rendr/node_modules/handlebars/dist/handlebars.runtime.js',
             async: '../rendr/node_modules/async/lib/async.js'
           },
           aliases: [
             {from: rendrDir + '/client', to: 'rendr/client'},
             {from: rendrDir + '/shared', to: 'rendr/shared'},
-            {from: rendrHandlebarsDir, to: 'rendr-handlebars'},
-            {from: rendrHandlebarsDir + '/shared', to: 'rendr-handlebars/shared'}
+            //{from: rendrHandlebarsDir, to: 'rendr-handlebars'},
+            //{from: rendrHandlebarsDir + '/shared', to: 'rendr-handlebars/shared'}
           ]
         },
         files: [{
@@ -116,8 +117,8 @@ module.exports = function(grunt) {
             'app/**/*.js',
             rendrDir + '/client/**/*.js',
             rendrDir + '/shared/**/*.js',
-            rendrHandlebarsDir + '/index.js',
-            rendrHandlebarsDir + '/shared/*.js'
+            //rendrHandlebarsDir + '/index.js',
+            //rendrHandlebarsDir + '/shared/*.js'
           ]
         }]
       }
