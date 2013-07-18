@@ -60,6 +60,7 @@ exports.template = function (grunt, init, done) {
     props.devDependencies = {
       "grunt": "~0.4.1",
       "grunt-contrib-stylus": "~0.5.0",
+      "grunt-contrib-uglify": "~0.2.2",
       "grunt-contrib-handlebars": "git://github.com/spikebrehm/grunt-contrib-handlebars#a4ae75750efeb23bf8ca9c61d9cf7569d40879fa",
       "grunt-rendr-stitch": "~0.0.6",
       "grunt-contrib-watch": "~0.3.1",
