@@ -36,19 +36,23 @@ var ClickCounter = React.createClass({displayName: 'ClickCounter',
   triggerReset: function() {
     this.setState({count: this.props.initialCount});
   },
+  handleClick: function() {
+    this.setState({count: this.state.count + 1});
+  },
   render: function() {
     var children = [];
     var i;
     for (i=0; i < this.state.count; i++) {
       children.push(
-        React.DOM.div( {className:"clickLogDiv", ref:"clickLog" + i} )
+        React.DOM.div(
+          {className:"clickLogDiv",
+          key:"clickLog" + i,
+          ref:"clickLog" + i}
+        )
       );
     }
     return (
-      React.DOM.span( {className:"clickIncrementer",
-          onClick:function() {
-            this.setState({count: this.state.count + 1});
-          }.bind(this)}, 
+      React.DOM.span( {className:"clickIncrementer", onClick:this.handleClick}, 
         children
       )
     );
@@ -77,7 +81,7 @@ var TestRefsComponent = React.createClass({displayName: 'TestRefsComponent',
   render: function() {
     return (
       React.DOM.div(null, 
-        React.DOM.div( {ref:"resetDiv", onClick:this.doReset.bind(this)}, 
+        React.DOM.div( {ref:"resetDiv", onClick:this.doReset}, 
 " Reset Me By Clicking This. "        ),
         GeneralContainerComponent( {ref:"myContainer"}, 
           ClickCounter( {ref:"myCounter", initialCount:1})

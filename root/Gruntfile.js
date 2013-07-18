@@ -100,15 +100,14 @@ module.exports = function(grunt) {
           npmDependencies: {
             underscore: '../rendr/node_modules/underscore/underscore.js',
             backbone: '../rendr/node_modules/backbone/backbone.js',
-            //handlebars: '../rendr/node_modules/rendr-handlebars/node_modules/handlebars/dist/handlebars.runtime.js',
-            handlebars: '../rendr/node_modules/handlebars/dist/handlebars.runtime.js',
+            handlebars: '../rendr-handlebars/node_modules/handlebars/dist/handlebars.runtime.js',
             async: '../rendr/node_modules/async/lib/async.js'
           },
           aliases: [
             {from: rendrDir + '/client', to: 'rendr/client'},
             {from: rendrDir + '/shared', to: 'rendr/shared'},
-            //{from: rendrHandlebarsDir, to: 'rendr-handlebars'},
-            //{from: rendrHandlebarsDir + '/shared', to: 'rendr-handlebars/shared'}
+            {from: rendrHandlebarsDir, to: 'rendr-handlebars'},
+            {from: rendrHandlebarsDir + '/shared', to: 'rendr-handlebars/shared'}
           ]
         },
         files: [{
@@ -117,10 +116,18 @@ module.exports = function(grunt) {
             'app/**/*.js',
             rendrDir + '/client/**/*.js',
             rendrDir + '/shared/**/*.js',
-            //rendrHandlebarsDir + '/index.js',
-            //rendrHandlebarsDir + '/shared/*.js'
+            rendrHandlebarsDir + '/index.js',
+            rendrHandlebarsDir + '/shared/*.js'
           ]
         }]
+      }
+    },
+
+    uglify: {
+      my_target: {
+        files: {
+          'public/mergedAssets.min.js': ['public/mergedAssets.js']
+        }
       }
     }
   });
@@ -128,11 +135,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-bg-shell');
   grunt.loadNpmTasks('grunt-rendr-stitch');
   grunt.loadNpmTasks('grunt-react');
 
-  grunt.registerTask('compile', ['handlebars', 'react', 'rendr_stitch', 'stylus']);
+  grunt.registerTask('compile', ['handlebars', 'react', 'rendr_stitch', 'uglify', 'stylus']);
 
   // Run the server and watch for file changes
   grunt.registerTask('server', ['bgShell:runNode', 'compile', 'watch']);

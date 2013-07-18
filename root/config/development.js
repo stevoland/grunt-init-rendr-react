@@ -11,8 +11,14 @@ exports.config = {
   },
 
   api: {
-    host: "{%= rendr_api_host %}",
-    protocol: "{%= rendr_api_protocol %}"
+    'default': {
+      host: 'api.github.com',
+      protocol: 'https'
+    },
+    'travis-ci': {
+      host: 'api.travis-ci.org',
+      protocol: 'https'
+    }
   },
 
   rendrApp: {

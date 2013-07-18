@@ -57,13 +57,7 @@ function getID(node) {
 }
 
 function internalGetID(node) {
-  if (node && node.getAttributeNode) {
-    var attributeNode = node.getAttributeNode(ATTR_NAME);
-    if (attributeNode) {
-      return attributeNode.value || '';
-    }
-  }
-  return '';
+  return node && node.getAttribute && node.getAttribute(ATTR_NAME) || '';
 }
 
 /**
@@ -160,6 +154,7 @@ function purgeID(id) {
 
 exports.ATTR_NAME = ATTR_NAME;
 exports.getID = getID;
+exports.rawGetID = internalGetID;
 exports.setID = setID;
 exports.getNode = getNode;
 exports.purgeID = purgeID;
